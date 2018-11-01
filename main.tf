@@ -140,5 +140,4 @@ module "lhazar-sheep-dev-1"{
   folder_id         = "${google_folder.lhazar-sheep-dev.id}"
   create_group      = "true"
   group_name        = "lhazar-sheep-dev-1-editors"
-  app_engine        = {"location" = "us-central"}
 }
