@@ -154,3 +154,19 @@ module "take-over-1" {
   folder_id         = "${google_folder.dothraki-horses-dev.id}"
   billing_account   = "${var.billing_account}"
 }
+
+
+
+resource "google_folder" "take-over-the-world" {
+  display_name = "take-over"
+  parent       = "organizations/${var.organization_id}"
+}
+
+module "take-over-the-world-2" {
+  source            = "github.com/DothrakiHord/terraform-google-project-factory"
+  name              = "take-over-theworld-1123-2"
+  activate_apis      = ["compute.googleapis.com", "container.googleapis.com", "cloudbilling.googleapis.com"]
+  org_id            = "${var.organization_id}"
+  folder_id         = "${google_folder.take-over-the-world.id}"
+  billing_account   = "${var.billing_account}"
+}
