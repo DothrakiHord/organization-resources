@@ -33,6 +33,7 @@ resource "google_folder" "dothraki" {
   parent       = "organizations/${var.organization_id}"
 }
 
+/** group created too fast **/
 module "dothraki-1" {
   source            = "github.com/DothrakiHord/terraform-google-project-factory"
   name              = "dothraki-horses-dev-1-3323f"
