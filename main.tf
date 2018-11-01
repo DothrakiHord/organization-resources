@@ -158,7 +158,7 @@ module "take-over-1" {
 
 
 resource "google_folder" "take-over-the-world" {
-  display_name = "take-over"
+  display_name = "take-over-the-world"
   parent       = "organizations/${var.organization_id}"
 }
 
