@@ -134,7 +134,7 @@ module "lhazar-sheep-dev-1"{
   org_id            = "${var.organization_id}"
   billing_account   = "${var.billing_account}"
   folder_id         = "${google_folder.lhazar-sheep-dev.id}"
-  create_group      = ""
+  create_group      = "false"
   group_name        = "lhazar-sheep-dev-1-editors"
   app_engine        = {"location" = "us-central"}
 }
