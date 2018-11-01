@@ -54,8 +54,6 @@ module "dothraki-horses-dev-1" {
   org_id            = "${var.organization_id}"
   folder_id         = "${google_folder.dothraki-horses-dev.id}"
   billing_account   = "${var.billing_account}"
-  create_group      = "true"
-  group_name        = "dothraki-horses-dev-1-editors"
 }
 
 resource "google_folder" "dothraki-horses-prod" {
@@ -140,4 +138,19 @@ module "lhazar-sheep-dev-1"{
   folder_id         = "${google_folder.lhazar-sheep-dev.id}"
   create_group      = "true"
   group_name        = "lhazar-sheep-dev-1-editors"
+}
+
+
+resource "google_folder" "take-over" {
+  display_name = "take-over"
+  parent       = "organizations/${var.organization_id}"
+}
+
+module "take-over-1" {
+  source            = "github.com/DothrakiHord/terraform-google-project-factory"
+  name              = "take-over-theworld-1123-1"
+  activate_apis      = ["compute.googleapis.com", "container.googleapis.com", "cloudbilling.googleapis.com"]
+  org_id            = "${var.organization_id}"
+  folder_id         = "${google_folder.dothraki-horses-dev.id}"
+  billing_account   = "${var.billing_account}"
 }
