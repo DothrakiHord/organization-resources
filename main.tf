@@ -18,9 +18,8 @@
 provider "google" {
 }
 
-/** hello **/
 provider "gsuite" {
-  credentials = "/home/bmenasha/Downloads/gcpidentityexample-1-cf-1-6c0eaee5ccd6.json"
+  credentials = "/root/.config/gcloud/application_default_credentials.json"
   impersonated_user_email = "${var.admin_email}"
   oauth_scopes = [
     "https://www.googleapis.com/auth/admin.directory.group",
@@ -52,6 +51,7 @@ module "dothraki-horses-dev-1" {
   folder_id         = "${google_folder.dothraki-horses-dev.id}"
   billing_account   = "${var.billing_account}"
   create_group      = "false"
+  group_name        = "dothraki-horses-dev-1-editors"
 }
 
 resource "google_folder" "dothraki-horses-prod" {
@@ -67,6 +67,7 @@ module "dothraki-horses-prod-1" {
   folder_id         = "${google_folder.dothraki-horses-prod.id}"
   billing_account   = "${var.billing_account}"
   create_group      = "false"
+  group_name        = "dothraki-horses-prod-1-editors"
 }
 
 module "dothraki-horses-prod-2" {
@@ -77,6 +78,7 @@ module "dothraki-horses-prod-2" {
   folder_id         = "${google_folder.dothraki-horses-prod.id}"
   billing_account   = "${var.billing_account}"
   create_group      = "false"
+  group_name        = "dothraki-horses-prod-2-editors"
 }
 
 resource "google_folder" "qohor" {
@@ -107,6 +109,7 @@ module "qohor-valyrian-prod-1" {
   folder_id         = "${google_folder.qohor-valyrian-prod.id}"
   billing_account   = "${var.billing_account}"
   create_group      = "false"
+  group_name        = "qohor-valyrian-prod-1-editors"
 }
 
 resource "google_folder" "lhazar" {
@@ -131,6 +134,7 @@ module "lhazar-sheep-dev-1"{
   org_id            = "${var.organization_id}"
   billing_account   = "${var.billing_account}"
   folder_id         = "${google_folder.lhazar-sheep-dev.id}"
-  create_group      = "false"
+  create_group      = ""
+  group_name        = "lhazar-sheep-dev-1-editors"
   app_engine        = {"location" = "us-central"}
 }
