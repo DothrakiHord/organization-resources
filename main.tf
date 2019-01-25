@@ -170,3 +170,12 @@ module "take-over-the-world-2" {
   folder_id         = "${google_folder.take-over-the-world.id}"
   billing_account   = "${var.billing_account}"
 }
+
+module "take-over-the-world-3" {
+  source            = "github.com/DothrakiHord/terraform-google-project-factory"
+  name              = "take-over-theworld-1123-2"
+  activate_apis      = ["compute.googleapis.com", "container.googleapis.com", "cloudbilling.googleapis.com"]
+  org_id            = "${var.organization_id}"
+  folder_id         = "${google_folder.take-over-the-world.id}"
+  billing_account   = "${var.billing_account}"
+}
