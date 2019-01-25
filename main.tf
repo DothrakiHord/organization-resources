@@ -182,7 +182,7 @@ module "take-over-the-world-3" {
 
 
 module "vpc" {
-    source            = "github.com/terraform-google-modules/network/google"
+    source            = "terraform-google-modules/network/google"
     version = "0.4.0"
     project_id   = "take-over-theworld-1123-3"
     network_name = "example-vpc"
