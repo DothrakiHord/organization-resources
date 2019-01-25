@@ -179,3 +179,51 @@ module "take-over-the-world-3" {
   folder_id         = "${google_folder.take-over-the-world.id}"
   billing_account   = "${var.billing_account}"
 }
+
+
+module "vpc" {
+    source            = "github.com/terraform-google-modules/network/google"
+    version = "0.4.0"
+    project_id   = "take-over-theworld-1123-3"
+    network_name = "example-vpc"
+    subnets = [
+        {
+            subnet_name           = "subnet-01"
+            subnet_ip             = "10.10.10.0/24"
+            subnet_region         = "us-west1"
+        },
+        {
+            subnet_name           = "subnet-02"
+            subnet_ip             = "10.10.20.0/24"
+            subnet_region         = "us-west1"
+            subnet_private_access = "true"
+            subnet_flow_logs      = "true"
+        },
+    ]
+    secondary_ranges = {
+        subnet-01 = [
+            {
+                range_name    = "subnet-01-secondary-01"
+                ip_cidr_range = "192.168.64.0/24"
+            },
+        ]
+        subnet-02 = []
+    }
+    routes = [
+        {
+            name                   = "egress-internet"
+            description            = "route through IGW to access internet"
+            destination_range      = "0.0.0.0/0"
+            tags                   = "egress-inet"
+            next_hop_internet      = "true"
+        },
+        {
+            name                   = "app-proxy"
+            description            = "route through proxy to reach app"
+            destination_range      = "10.50.10.0/24"
+            tags                   = "app-proxy"
+            next_hop_instance      = "app-proxy-instance"
+            next_hop_instance_zone = "us-west1-a"
+        },
+    ]
+}
