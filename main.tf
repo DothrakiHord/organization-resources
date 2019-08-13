@@ -42,6 +42,11 @@ resource "google_folder" "dothraki-horses" {
   parent       = "${google_folder.dothraki.id}"
 }
 
+resource "google_folder" "dothraki-sheep" {
+  display_name = "dothraki-sheep"
+  parent       = "${google_folder.dothraki.id}"
+}
+
 resource "google_folder" "dothraki-horses-dev" {
   display_name = "dothraki-horses-dev"
   parent       = "${google_folder.dothraki-horses.id}"
